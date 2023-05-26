@@ -1,0 +1,9 @@
+/* 필요없는 기본 설정치를 reset */
+
+* {
+    /* 페이지의 기본 여백을 초기화시킴 */
+    margin: 0;
+    padding: 0;
+    /* border를 추가 계산하지 않게 함 */
+    box-sizing: border-box;
+}

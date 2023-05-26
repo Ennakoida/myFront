@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>선택자 part2</title>
+        <style>
+            /* 
+                동위 선택자 (형제 자매 관계, 같은 레벨에 있는 요소들)
+                1. 기준은 미포함, 바로 뒤 여러개 선택 : ~
+                2. 기준은 미포함, 바로 뒤 1개 선택 : +
+             */
+             /* ~ : h5 뒤의 모든 p */
+            h5~p { background-color: pink;}
+             /* + : h5 바로 뒤의 p */
+            h5+p { color: blue;}
+
+            /* 
+                일반 구조 선택자 (구조 의사 클래스) 
+                > 형제자매들이 모두 같은 태그 형식일 때, 형제자매 관계 중에서
+                1. :first-child : 첫번째 
+                2. :last-child : 마지막
+                3. :nth-child() : 중간 (괄호 안에 수식도 가능 ex.2n+1)
+                4. :nth-last-child()
+            */
+            /* id=div-test1 자식의 p 중 첫번째 */
+            #div-test1 p:first-child { background-color: palevioletred;}
+            /* id=div-test1 자식의 p 중 마지막 */
+            #div-test1 p:last-child { background-color: aqua;}
+            /* id=div-test1 자식의 p중 2번째 / 2n+1 번째 */
+            #div-test1 p:nth-child(2) { background-color: gold;}
+            #div-test1 p:nth-child(2n+1) { color: blueviolet;}
+
+            /*
+                형태 구조 선택자
+                : 일반 구조 선택자와 비슷하지만, 요소가 *섞여있을 때* 사용한다.
+                : of 를 써야한다!!!!!
+                1. :first-of-type 
+                2. :last-of-type
+                3. :nth-of-type()
+                4. :nth-last-of-type()
+            */
+            /* p 중 마지막 */
+            #div-test2 p:last-of-type { background-color: deepskyblue;}
+            /* h4 중 첫번째 */
+            #div-test2 h4:first-of-type { background-color: navy; color: aliceblue;}
+
+            /*
+                반응 선택자
+                1. 클릭했을 때 : :active
+                2. 마우스를 올렸을 때 (마우스오버) : :hover
+            */
+            #div-test1:active { background-color: thistle;}
+            #div-test2:hover { background-color: lavender;}
+
+            /* 상태 선택자 */
+            /* input 태그를 기본속성선택자로 선택 */
+            /* :focus : 마우스를 클릭했을때... 라고 해야하나 초점이 갔을때 */
+            input[type=text]:focus { background-color: bisque;}
+            /* :checked : 체크했을때  */
+            input[type=checkbox]:checked{ 
+                width: 50px;
+                height : 50px;
+            }
+
+            /* 속성 선택자 : option 태그 속성에 따라 다르게 선택할 수 있음*/
+            /* :disabled : 선택할 수 없는 선택지 (현재 : HTML) */
+            option:disabled { background-color: royalblue;}
+            /* :enabled : 선택할 수 있는 선택지 */
+            option:enabled { background-color: aqua;}
+
+            /* 링크 선택자 */
+            /* :link : 방문하기 전의 링크 색 */
+            a:link { color: black;}
+            /* :visited : 방문한 후의 링크 색 */
+            a:visited { color: red;}
+
+            /* 부정 선택자 */
+            /* 짝수 (:nth-of-type(2n))가 아닌(:not()) */
+            #div-test2 p:not(:nth-of-type(2n)) { background-color: lightblue;}
+        </style>
+    </head>
+    <body>
+        <!--
+            선택자의 종류
+            1. 태그 선택자
+            2. 아이디 선택자 : id > #
+            3. 클래스 선택자 : class > .
+            4. 기본 속성 선택자 : =
+            5. 문자열 속성 선택자 : (기호)=
+            6. 자손 선택자 : >
+            7. 후손 선택자 : 띄어쓰기
+            ***
+            8. 동위 선택자 : ~ +
+            9. 일반 구조 선택자 : :first-child / :last-child / :nth-child() / :nth-last-child()
+            10. 형태 구조 선택자 : 일반 구조 선택자 + of
+            11. 반응 선택자 : :active / :hover
+            12. 상태 선택자 : :focus / :checked … …
+            13. 속성 선택자
+            14. 부정 선택자
+        -->
+        
+        <h1>동위 선택자</h1>
+        <div>
+            <!-- div 아래의, 같은 레벨의 관계 : 형제자매 관계 -->
+            <!-- 동위 선택자 : 하나의 속성(기준점)을 기준으로 하여 선택. 
+                형제자매 관계에서만 가능-->
+            <h4>자손1</h4>
+            <h5>자손2</h5>
+            <!-- p*3 으로 쓰면 동일한 p 태그 3개 만들어줌... 세상에...  -->
+            <p>자손3</p>
+            <p>자손4</p>
+            <p>자손5</p>
+            <h5>자손2</h5>
+            <p>자손3</p>
+        </div>
+        <hr>
+
+        <h1>일반 구조 선택자</h1>
+        <div>
+            <div id="div-test1">
+                <!-- ctrl+alt > 방향키 ... 로... 동시에 입력할 수 있음... 세상에22 -->
+                <p>테스트 1-1 입니다.</p>
+                <p>테스트 1-2 입니다.</p>
+                <p>테스트 1-3 입니다.</p>
+                <p>테스트 1-4 입니다.</p>
+                <p>테스트 1-5 입니다.</p>
+            </div>
+        </div>
+        <hr>
+
+        <h1>형태 구조 선택자</h1>
+        <div id="div-test2">
+            <p>테스트 1p 입니다.</p>
+            <h4>테스트 h4의 1번째</h4>
+            <p>테스트 2p 입니다.</p>
+            <h4>테스트 h4의 2번째</h4>
+            <p>테스트 3p 입니다.</p>
+            <h4>테스트 h4의 3번째</h4>
+            <p>테스트 4p 입니다.</p>
+            <h4>테스트 h4의 4번째</h4>
+        </div>
+        <hr>
+
+        <h1>상태, 속성, 링크 선택자</h1>
+        <form action="" method="">
+            <fieldset>
+                <legend>회원 정보 입력</legend>
+                <!-- 단축어 : input:text / input:checkbox … -->
+                이름 : <input type="text" name="user-name" id="user-name"><br>
+                아이디 : <input type="text" name="user-id" id="user-id"><br>
+                이메일 : <input type="email" name="user-email" id="user-email"><br>
+                취미 : 
+                <input type="checkbox" name="" id="">독서 
+                <input type="checkbox" name="" id="">코딩
+                <input type="checkbox" name="" id="">수영 <small>~상태선택자~</small> <br>
+                <select name="" id="">
+                    <!-- 실제로 넘어가는 값 : value값 -->
+                    <option value="">자바</option>
+                    <option value="">오라클</option>
+                    <option value="">JDBC</option>
+                    <option value="" disabled>HTML</option>
+                    <option value="">CSS</option>
+                </select>
+                <a href="http://www.kh-academy.co.kr">KH 정보교육원</a><br>
+                <input type="submit" value="제출하기">
+                <input type="reset" value="취소하기">
+            </fieldset>
+        </form>
+    </body>
+</html>

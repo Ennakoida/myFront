@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블 관련 스타일</title>
+    <style>
+        /* table : 제일 겉의 테두리에 대해서만 적용 */
+        table {
+            /* border: width, style, color 순서대로 기입 */
+            border: 1px solid black;
+            /* caption-side : caption의 위치 지정 (default : top) */
+            caption-side: bottom;
+            /* border-collapse : 테두리 한 줄 (맞닿아있으면 한 번만 표시하라) */
+            border-collapse: collapse;
+            /* text-align: 텍스트 정렬; */
+            text-align: center;
+        } 
+        /* 완전히 동일한 내용이 둘일때, ','로 합쳐서 표기 가능 */
+        th, td {
+            border: 1px dotted black;
+            /* padding : content 영역과 border 영역 사이에 간격을 줌 */
+            padding: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>상품 구성</h2>
+    <table>
+        <caption>선물용과 가정용 상품 구성</caption>
+        <thead>
+            <tr>
+                <th>용도</th>
+                <th>중량</th>
+                <th>갯수</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">선물용</td>
+                <td>3kg</td>
+                <td>11~16과</td>
+                <td>35,000원</td>
+            </tr>
+            <tr>
+                <td>5kg</td>
+                <td>18~26과</td>
+                <td>52,000원</td>
+            </tr>
+            <tr>
+                <td rowspan="2">가정용</td>
+                <td>3kg</td>
+                <td>11~16과</td>
+                <td>30,000원</td>
+            </tr>
+            <tr>
+                <td>5kg</td>
+                <td>18~26과</td>
+                <td>47,000원</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

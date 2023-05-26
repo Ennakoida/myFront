@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>애니메이션 관련 스타일</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+            }
+
+            .div-class {
+                background-color: salmon;
+                animation-name: transAni; /* -> keyframes*/
+                animation-duration: 5s; /* 몇 초 동안 할거다 */
+            }
+
+            /* 애니메이션 */
+            @keyframes transAni { /* transAni : animation-name */
+                0% { /* 처음 */
+                    background-color: yellowgreen;
+                }
+
+                /* 5%, … %를 많이 쪼갤수록 완성도 높아짐 */
+
+                100% { /* 마지막 */
+                    background-color: orange;
+                    border-radius: 50%;
+                    transform: rotateZ(360deg);
+                }
+            }
+
+            .div2-class {
+                background-color: gold;
+                animation-name: transRainbow;
+                animation-duration: 14s;
+                animation-delay: 3s;
+                animation-iteration-count: infinite; /* 반복 */
+            }
+
+            @keyframes transRainbow {
+                0% {
+                    background-color: red;
+                }
+
+                15% {
+                    background-color: orange;
+                }
+
+                30% {
+                    background-color: yellow;
+                }
+
+                45% {
+                    background-color: green;
+                }
+
+                60% {
+                    background-color: blue;
+                }
+
+                75% {
+                    background-color: navy;
+                }
+
+                100% {
+                    background-color: purple;
+                }
+                
+            }
+
+            .transImg {
+                width: 300px;
+                margin: 100px;
+            }
+
+            .transImg:hover {
+                animation-name: transImgAni;
+                animation-duration: 7s;
+                animation-iteration-count: infinite;
+                /* animation-direction: normal (default);
+                normal :  0 > 100
+                reverse : 100 > 0
+                alternate : 0 > 100 > 0 
+                alternate-reverse : 100 > 0 > 100 */
+                animation-direction: alternate;
+            }
+
+            @keyframes transImgAni {
+                0% {
+                    border: 3px dotted black;
+                }   
+                
+                100% {
+                    border: 3px solid black;
+                    border-radius: 50%;
+                    transform: rotateZ(360deg);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>애니메이션</h1>
+        <div class="div-class"></div><br>
+
+        <h3>무지개 애니메이션</h3>
+        <div class="div2-class"></div>
+
+        <h3>이미지 애니메이션</h3>
+        <img src="../images/forest1.PNG" alt="" class="transImg">
+    </body>
+</html>
